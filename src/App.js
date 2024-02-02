@@ -71,10 +71,10 @@ const Score = ({
       {/* <img src='https://js.cx/clipart/ball.svg' /> */}
       {/* </div> */}
       <div className='inner'>
-        <div className={`item item-score ${correctGuess ? 'd' : ''}`}>
+        <div className={`item item-score ${correctGuess ? 'goal' : ''}`}>
           {letterGuess.length}
         </div>
-        <div className={`item item-score ${correctNo ? 'd' : ''}`}>
+        <div className={`item item-score ${correctNo ? 'goal' : ''}`}>
           {letterNo.length}
         </div>
       </div>
@@ -183,6 +183,7 @@ function App() {
   const onAddedLetterGuess = () => {
     let g = letterInput.trim().toLowerCase().toString();
     console.log(g);
+    // openModalQuestion();
 
     if (letterAnswerArray.includes(g)) {
       const newWord = letter$.map((letter, index) =>
@@ -255,14 +256,14 @@ function App() {
           <span className='warning-img'>🔄</span>
         </div>
       </div>
-      {/* {openModalGreeting && (
+      {openModalGreeting && (
         <ModalGreeting
           openModalGreeting={openModalGreeting}
           setOpenModalGreeting={setOpenModalGreeting}
           nameUser={nameUser}
           onNameUser={onNameUser}
         />
-      )} */}
+      )}
       {modalQuestion && (
         <ModalQuestionUser
           openModalQuestion={openModalQuestion}
