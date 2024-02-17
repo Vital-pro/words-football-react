@@ -10,17 +10,18 @@ import { ModalAlreadyExistsUser } from './components/modals/ModalAlreadyExistsUs
 import { ModalWasPreviousUser } from './components/modals/ModalWasPreviousUser';
 import { ModalGameOverFinish } from './components/modals/ModalGameOverFinish';
 
-function pickWord(words) {
-  return words[Math.floor(Math.random() * words.length)];
-}
-//* object с описанием - title и словом-word
-let wordObj = pickWord(words);
-let wordObjDescroption = wordObj.title; //* word description
-let word = wordObj.word; //* word
-let letterAnswerArray = word.split(''); //* arrayWord
-//? ниже два разных варианта заполнения массива с '?' вместо букв
-// let letterArray$ = letterAnswerArray.map((item) => (item = '?'));
-let letterArray$ = Array(letterAnswerArray.length).fill('⚽');
+//! after finish Game Delete!
+// function pickWord(words) {
+//   return words[Math.floor(Math.random() * words.length)];
+// }
+// //* object с описанием - title и словом-word
+// let wordObj = pickWord(words);
+// let wordObjDescription = wordObj.title; //* word description
+// let word = wordObj.word; //* word
+// let letterAnswerArray = word.split(''); //* arrayWord
+// //? ниже два разных варианта заполнения массива с '?' вместо букв
+// // let letterArray$ = letterAnswerArray.map((item) => (item = '?'));
+// let letterArray$ = Array(letterAnswerArray.length).fill('⚽');
 
 const Header = () => {
   return (
@@ -37,12 +38,10 @@ const Header = () => {
   );
 };
 
-const WordTask = ({ letter$ }) => {
-  console.log('props.letter$==>>', letter$);
-
+const WordTask = ({ letter$, wordObjDescription, word }) => {
   return (
     <div className='WordTask'>
-      <p>{`${wordObjDescroption}: ${word}`}</p>
+      <p>{`${wordObjDescription}: ${word}`}</p>
       <ul className='list'>
         {letter$.map((item, index) => (
           <li className='item item-word' key={index}>
@@ -91,6 +90,7 @@ const FormLetter = ({
   onClickInputValue,
   onAddedLetterGuess,
   letterGuess,
+  letterArray$,
 }) => {
   return (
     <div className='FormLetter'>
@@ -126,12 +126,45 @@ const FormLetter = ({
 // }
 // //* object с описанием - title и словом-word
 // let word = pickWord(words);
-// let wordObjDescroption = word.title; //* word description
+// let wordObjDescription = word.title; //* word description
 // let word = word.word; //* word
 // let letterAnswerArray = word.word.split(''); //* arrayWord
 // let letterArray$ = letterAnswerArray.map((item) => (item = '?'));
 
 function App() {
+  function pickWord(words) {
+    return words[Math.floor(Math.random() * words.length)];
+  }
+
+function createLetterArray$(word) {
+  console.log(word);
+  let wordSplit = word.split('');
+  console.log(wordSplit)
+  const letterArray$ = Array(wordSplit.length).fill('⚽');
+  console.log(letterArray$);
+  return letterArray$;
+}
+
+  const [wordObj, setWordObj] = useState(pickWord(words));
+  const [wordObjDescription, setwordObjDescription] = useState(wordObj.title);
+  const [word, setWord] = useState(wordObj.word);
+  
+  // let wordObj = pickWord(words); //* object с описанием - title и словом-word
+  // let wordObjDescription = wordObj.title; //* word description
+  // let word = wordObj.word; //* word
+
+  //?
+  const [letterAnswerArray, setLetterAnswerArray] = useState(word.split(''));
+  const [letterArray$, setLetterArray$] = useState(createLetterArray$(word));
+  //?
+
+  // let letterAnswerArray = word.split(''); //* arrayWord
+  //? ниже два разных варианта заполнения массива с '?' вместо букв
+  // let letterArray$ = letterAnswerArray.map((item) => (item = '?'));
+  // let letterArray$ = Array(letterAnswerArray.length).fill('⚽');
+
+  
+  
   //* управляемыe inputs
   const [letterInput, setLetterInput] = useState('');
   const [nameUser, setNameUser] = useState('');
@@ -141,14 +174,13 @@ function App() {
   const [modalAlreadyExists, setModalAlreadyExists] = useState(false);
   const [modalWasPrevious, setModalWasPrevious] = useState(false);
   const [modalGameOver, setModalGameOver] = useState(false);
-
-  const [letter$, setLetter$] = useState(letterArray$);
+  //* Letters
+  const [letter$, setLetter$] = useState(createLetterArray$(word));
   const [letterGuess, setLetterGuess] = useState([]);
   const [letterNo, setLetterNo] = useState([]);
   //* правильная ли введена буква
   const [correctGuess, isCorrectGuess] = useState(false);
   const [correctNo, isCorrectNo] = useState(false);
-  // const [autoFocusState, setAutoFocusState] = useState(false);
 
   const onClickInputValue = (e) => {
     let val = e.target.value;
@@ -228,18 +260,47 @@ function App() {
   useEffect(() => {
     const isComplete = letter$.every((el) => el !== '⚽');
     if (isComplete) {
-      setTimeout(() => {
+      const timeoutModalId = setTimeout(() => {
         // alert('Success!');
         setModalQuestion(false);
         openModalGameOver();
       }, 800);
+
+      return () => {
+        clearTimeout(timeoutModalId);
+      };
     }
   }, [letter$]);
   //! Два разных варианта FINISH
 
-  // useEffect(() => {
-  //   openModalQuestion();
-  // }, [letterGuess, letterNo]);
+  //! start NewGame
+  const startNewGame = () => {
+    setModalGameOver(false);
+    setOpenModalGreeting(false);
+    
+    setWordObj(pickWord(words));
+    setwordObjDescription(wordObj.title);
+    setWord(wordObj.word);
+
+    setLetterAnswerArray(wordObj.word.split(''));
+
+    setLetterArray$(createLetterArray$(wordObj.word));
+    setLetter$(createLetterArray$(wordObj.word));
+
+
+    setLetterGuess([]);
+    setLetterNo([]);
+    setLetterInput('');
+
+    console.log(wordObj);
+    console.log(wordObjDescription)
+    console.log(word, wordObj.word);
+    console.log(letterAnswerArray);
+    console.log(letter$)
+    console.log(letterArray$)
+    
+  };
+  //! finish NewGame
 
   console.log(letterAnswerArray);
   console.log('letter$==>>', letter$);
@@ -282,23 +343,32 @@ function App() {
           setModalWasPrevious={setModalWasPrevious}
         />
       )}
-      {modalGameOver && <ModalGameOverFinish />}
+      {modalGameOver && <ModalGameOverFinish startNewGame={startNewGame} />}
 
-      <Header />
-      <WordTask letter$={letter$} />
-      <Score
-        nameUser={nameUser}
-        letterGuess={letterGuess}
-        letterNo={letterNo}
-        correctGuess={correctGuess}
-        correctNo={correctNo}
-      />
-      <FormLetter
-        letterInput={letterInput}
-        onClickInputValue={onClickInputValue}
-        onAddedLetterGuess={onAddedLetterGuess}
-        letterGuess={letterGuess}
-      />
+      {!openModalGreeting && (
+        <>
+          <Header />
+          <WordTask
+            letter$={letter$}
+            wordObjDescription={wordObjDescription}
+            word={word}
+          />
+          <Score
+            nameUser={nameUser}
+            letterGuess={letterGuess}
+            letterNo={letterNo}
+            correctGuess={correctGuess}
+            correctNo={correctNo}
+          />
+          <FormLetter
+            letterInput={letterInput}
+            onClickInputValue={onClickInputValue}
+            onAddedLetterGuess={onAddedLetterGuess}
+            letterGuess={letterGuess}
+            letterArray$={letterArray$}
+          />
+        </>
+      )}
     </div>
   );
 }

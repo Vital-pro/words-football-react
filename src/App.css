@@ -11,6 +11,11 @@
   background-color: #61dafb26;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /*? Modals start*/
 
 /* * orientation portrait start */
@@ -87,7 +92,7 @@ body {
   padding: 10px;
   width: 86%;
   /* width: clamp(250px, 70%, 85%); */
-  max-width: calc(max(500px, 85% - 480px));
+  /* max-width: calc(max(500px, 85% - 480px)); */
 
   left: 50%;
   top: 50%;
@@ -190,7 +195,7 @@ input::placeholder {
   height: 100%; */
   left: 0;
   top: 0;
-  background-color: #d75e68;
+  background-color: #d41827;
 
   /* transition: all 0.5s ease-in-out; */
   z-index: 1;
@@ -209,9 +214,11 @@ input::placeholder {
   text-align: center;
   line-height: 1.5;
   background-color: #f7df0d;
-  width: clamp(250px, 70%, 85%);
+  /* width: clamp(250px, 70%, 85%); */
+  height: 24%;
+  max-height: 100%;
   left: 50%;
-  top: 14%;
+  top: 13%;
   transform: translate(-50%, -50%);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   /* transition: all 0.5s ease-in-out; */
@@ -223,37 +230,91 @@ input::placeholder {
 }
 
 .overlay-success {
-  background-color: #000;
+  background-color: #6f25f4;
 }
 
 .modal-success {}
 
 @media (max-width: 768px) {
   .modal-user {
-  top: 75%;
-  height: 30%;
+  top: 76%;
+  height: 44%;
   }
 }
 @media (max-width: 375px) {
   .modal-user {
-  top: 65%;
+  top: 72%;
   }
 }
 
 .modal-user-text {
-  font-size: clamp(1.25rem, 1.019rem + 0.48vw, 1.5rem);
+  /* font-size: clamp(1.25rem, 1.019rem + 0.48vw, 1.5rem); */
+  font-size: 38px;
+}
+
+.modal-user-goal {
+  font-size: 30px;
+
+}
+
+.modal-user-box {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  width: 80%;
+  max-width: 80%;
 }
 
 .modal-user-btn {
+  background-color: #54ff3b;
+
   border: none;
   border-radius: 6px;
-  font-size: clamp(1.125rem, 1.01rem + 0.24vw, 1.25rem);
-  background-color: bisque;
   cursor: pointer;
+  width: 80%;
+  border-radius: 10%;
   padding: 2%;
   margin-top: 5px;
+  font-size: clamp(1rem, 0.852rem + 0.74vw, 1.5rem);
 }
 
+.modal-user-exit-link {
+  background-color: #ff572285;
+  /* border: none; */
+  width: 80%;
+  border-radius: 10%;
+  /* cursor: pointer; */
+  padding: 2%;
+  margin-top: 5px;
+  font-size: clamp(1rem, 0.852rem + 0.74vw, 1.5rem);
+}
+
+@media (max-width: 476px) {
+  .modal-user-box {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* .modal-user-btn,
+  .modal-user-exit-link {
+    padding: 4%;
+    width: 80%;
+    border-radius: 10%;
+    background-color: #54ff3b;
+  }
+
+  .modal-user-exit-link {
+    background-color: #ff572285;
+  } */
+}
+
+@media (max-width: 375px) {
+  .modal-user-btn,
+  .modal-user-exit-link {
+    font-size: 16px;
+  }
+}
 /*? Modals finish*/
 
 .App {
@@ -308,6 +369,7 @@ input::placeholder {
 }
 
 .WordTask > p {
+  font-size: clamp(1rem, 0.704rem + 1.48vw, 2rem);
   margin-bottom: 15px;
 }
 
@@ -336,7 +398,9 @@ input::placeholder {
 .item-word {
   align-items: last baseline;
   border: none;
-  line-height: 1.36;
+  line-height: normal;
+  /* background-color: inherit; */
+  /* color: #fff; */
   /* background-image: url('https://js.cx/clipart/ball.svg'); */
   /* background-repeat: no-repeat; */
   /* background-position: center; */

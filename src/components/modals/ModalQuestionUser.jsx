@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const ModalQuestionUser = ({ openModalQuestion, setModalQuestion }) => {
   return (
@@ -7,14 +7,17 @@ export const ModalQuestionUser = ({ openModalQuestion, setModalQuestion }) => {
         {/* ModalQuestionUser */}
         <p className='modal-user-text'>
           Г о ⚽ о л !! <br />
-          Красава!!
+          <span className='modal-user-goal'>Красава!!</span>
         </p>
-        <button
-          className='modal-user-btn'
-          onClick={() => setModalQuestion(false)}
-        >
-          Продолжаем?
-        </button>
+        <div className='modal-user-box'>
+          <button
+            className='modal-user-btn'
+            onClick={() => setModalQuestion(false)}
+          >
+            Продолжаем?
+          </button>
+          <a className='modal-user-exit-link' href='/'>Закончить игру</a>
+        </div>
       </div>
     </div>
   );
