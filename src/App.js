@@ -26,9 +26,9 @@ import { ModalGameOverFinish } from './components/modals/ModalGameOverFinish';
 const Header = () => {
   return (
     <div className='Header'>
-      <h1>Guess the word!</h1>
+      <h1>Угадай слово!</h1>
       <p>
-        Начинаем игру! Прочитай описание самого слова и вводи букву в нужное
+        Начинаем игру в словарный футбол! Прочитай описание самого слова и вводи букву в нужное
         поле. Если угадал верно, значит забил гол! Угаданная буква откроется в
         слове, и счет на табло изменится. Если введешь неверную букву, это
         значит, я забил гол в твои ворота. Когда все попытки будут использованы,
@@ -41,7 +41,7 @@ const Header = () => {
 const WordTask = ({ letter$, wordObjDescription, word }) => {
   return (
     <div className='WordTask'>
-      <p>{`${wordObjDescription}: ${word}`}</p>
+      <p>{`${wordObjDescription}`}</p>
       <ul className='list'>
         {letter$.map((item, index) => (
           <li className='item item-word' key={index}>
@@ -343,7 +343,12 @@ function createLetterArray$(word) {
           setModalWasPrevious={setModalWasPrevious}
         />
       )}
-      {modalGameOver && <ModalGameOverFinish startNewGame={startNewGame} />}
+      {modalGameOver && (
+        <ModalGameOverFinish startNewGame={startNewGame} nameUser={nameUser}
+        word={word}
+        letterGuess={letterGuess}
+        letterNo={letterNo} />
+      )}
 
       {!openModalGreeting && (
         <>
