@@ -2,13 +2,13 @@ import React from 'react';
 
 export const ModalGreeting = ({
   openModalGreeting,
-  setOpenModalGreeting,
+  handleopenModalGreeting,
   nameUser,
   onNameUser,
 }) => {
   return (
     <div
-      className='overlay'
+      className='overlay-greeting'
       style={{ display: `${openModalGreeting ? '' : 'none'}` }}
     >
       <div className='modal'>
@@ -17,12 +17,10 @@ export const ModalGreeting = ({
           <span className='title-comp-name'> Сл⚽варик!</span>
         </p>
         <p className='modal-text'>
-          Поиграем в весёлый <br /> словарный
-          футбол? ⚽
+          Поиграем в весёлый <br /> словарный футбол? ⚽
         </p>
         <p className='modal-text'>Я загадаю слово, а ты угадай его!</p>
         <label>
-          {/* <p>Напиши, как тебя зовут?</p> */}
           <input
             value={nameUser}
             onChange={onNameUser}
@@ -34,7 +32,7 @@ export const ModalGreeting = ({
         <button
           className='modal-btn'
           disabled={!nameUser.length}
-          onClick={() => setOpenModalGreeting(false)}
+          onClick={handleopenModalGreeting}
         >
           Начинаем!
         </button>

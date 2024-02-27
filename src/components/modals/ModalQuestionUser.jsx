@@ -1,13 +1,13 @@
 import React from 'react';
 
-export const ModalQuestionUser = ({ openModalQuestion, setModalQuestion }) => {
+export const ModalQuestionUser = ({ setModalQuestion }) => {
   return (
     <div className='overlay overlay-user'>
       <div className='modal modal-user'>
-        {/* ModalQuestionUser */}
         <p className='modal-user-text'>
           Г о ⚽ о л !! <br />
           <span className='modal-user-goal'>Красава!!</span>
+          <span className='modal-user-goal'>Кто забил..?</span>
         </p>
         <div className='modal-user-box'>
           <button

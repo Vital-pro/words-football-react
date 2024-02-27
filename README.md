@@ -1,3 +1,24 @@
+## Сл⚽варик - это игра в слова. 
+#### Нужно угадать слово по его описанию.
+Игра браузерная, поэтому скачивать или устанавливать ничего не нужно.
+Просто переходи по ссылке []() и наслаждайся!
+
+![начало игры](public/images/start.png)
+
+Правила очень простые и понятные. Угадал букву - забил гол! Не угадал, тогда мяч в твоих воротах. Итоговый счет будет на табло. Желаю успехов!
+
+![public/images/play.jpg](public/images/play.png)
+
+### Стэк технологий:
+_______
+
+React, SCSS с новой технологией адаптива на формулах
+
+![[React]](/public/favicon.icos)
+
+
+
+<!-- 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -67,4 +88,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->

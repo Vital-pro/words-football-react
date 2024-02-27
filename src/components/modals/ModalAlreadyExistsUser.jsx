@@ -1,12 +1,9 @@
 import React from 'react'
 
-export const ModalAlreadyExistsUser = ({
-  openModalAlreadyExists, setModalAlreadyExists,
-}) => {
+export const ModalAlreadyExistsUser = ({ setModalAlreadyExists }) => {
   return (
     <div className='overlay overlay-user overlay-message'>
       <div className='modal modal-user modal-message'>
-        {/* ModalAlreadyExistsUser */}
         <p className='modal-user-text'>Такая буква уже есть!</p>
         <button
           className='modal-user-btn'
