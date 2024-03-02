@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import words from './data/db.words.json';
@@ -9,102 +9,10 @@ import { ModalAlreadyExistsUser } from './components/modals/ModalAlreadyExistsUs
 import { ModalWasPreviousUser } from './components/modals/ModalWasPreviousUser';
 import { ModalGameOverFinish } from './components/modals/ModalGameOverFinish';
 
-const Header = memo(() => {
-  return (
-    <div className='Header'>
-      <h1>Угадай слово!</h1>
-      <p>
-        Начинаем игру в словарный футбол! Вопросы могут быть с юмором! Прочитай
-        описание самого слова и вводи букву в нужное поле. Если угадал верно,
-        значит забил гол! Угаданная буква откроется в слове, и счет на табло
-        изменится. Если введешь неверную букву, это значит, я забил гол в твои
-        ворота. Когда все попытки будут использованы, увидим, кто победил.
-        Итоговый счет будет на табло! Желаю удачи!
-      </p>
-    </div>
-  );
-});
-
-const WordTask = ({
-  letter$,
-  title,
-}) => {
-  return (
-    <div className='WordTask'>
-      <p>{`${title}`}</p>
-      <ul className='list'>
-        {letter$.map((item, index) => (
-          <li className='item item-word' key={index}>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-const Score = ({
-  letterGuess,
-  letterNo,
-  nameUser,
-  correctGuess,
-  correctNo,
-}) => {
-  return (
-    <div className='Score'>
-      <div className='itemLetters itemLetters-user'>{letterGuess}</div>
-      <div className='itemLetters itemLetters-comp'>{letterNo}</div>
-      <div className='inner'>
-        <div className={`item item-score ${correctGuess ? 'goal' : ''}`}>
-          {letterGuess.length}
-        </div>
-        <div className={`item item-score ${correctNo ? 'goal' : ''}`}>
-          {letterNo.length}
-        </div>
-      </div>
-      <div className='gamers-inner'>
-        <p className='gamers-user'>{nameUser}</p>
-        <p className='gamers-comp'>Сл⚽варик</p>
-      </div>
-    </div>
-  );
-};
-
-const FormLetter = memo(
-  ({
-    letterInput,
-    onClickInputValue,
-    onAddedLetterGuess,
-    letterGuess,
-    letter$,
-  }) => {
-    return (
-      <div className='FormLetter'>
-        <label htmlFor='letter'>
-          Введи букву
-          <input
-            autoFocus
-            disabled={letter$.length === letterGuess.length}
-            value={letterInput}
-            onChange={onClickInputValue}
-            className='myInput'
-            name='text'
-            id='letter'
-            maxLength={1}
-          />
-        </label>
-        <button
-          onClick={onAddedLetterGuess}
-          className='myBtn'
-          disabled={!letterInput.length}
-          type='button'
-        >
-          ⚽ Удар!
-        </button>
-      </div>
-    );
-  }
-);
+import { Header } from './components/Header/Header';
+import { WordTask } from './components/WordTask/WordTask';
+import { Score } from './components/Score/Score';
+import { FormLetter } from './components/FormLetter/FormLetter';
 
 function App() {
   //* Math.random() work no correct
