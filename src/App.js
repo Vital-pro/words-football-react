@@ -136,7 +136,7 @@ function App() {
       <div id='warning'>
         <div className='warning-inner'>
           <span className='warning-title'>
-            Переверни экран! Так удобнее играть!
+            Переверни экран или растяни браузер в высоту. Так удобнее играть! 
           </span>
           <span className='warning-img'>🔄</span>
         </div>

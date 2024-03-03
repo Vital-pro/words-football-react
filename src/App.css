@@ -33,7 +33,7 @@ a {
   color: #ffffff;
   font-size: 24px;
 }
-@media (max-device-height: 592px) {
+@media (max-device-height: 592px) or (max-height: 571px) {
   #warning {
     display: flex;
     padding: 10px;
